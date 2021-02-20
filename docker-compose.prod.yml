@@ -1,7 +1,7 @@
 version: '3'
 services:
  app:
-   image: ECR_URL:v1.0.0
+   image: ECR_URI:v1.0.0
    env_file: ./src/production.env
    environment:
      - TZ=Asia/Tokyo
