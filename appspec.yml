@@ -1,0 +1,18 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /opt/node-app
+hooks:
+  ApplicationStop:
+    - location: scripts/stop_docker_container.sh
+      timeout: 300
+      runas: root
+  AfterInstall:
+    - location: scripts/update_docker_image.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: scripts/start_docker_container.sh
+      timeout: 300
+      runas: root

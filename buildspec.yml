@@ -32,3 +32,8 @@ phases:
 artifacts:
   files:
     - imagedef.json
+    - docker-compose.yml
+    - docker-compose.prod.yml
+    - scripts/update_docker_image.sh
+    - scripts/start_docker_container.sh
+    - scripts/stop_docker_container.sh
