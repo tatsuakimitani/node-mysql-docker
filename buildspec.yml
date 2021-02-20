@@ -12,8 +12,7 @@ phases:
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
   build:
     commands:
-      - docker-compose build
-        #      - docker tag fargate-deploy-nginx:$IMAGE_TAG $IMAGE_URI_NODE
+      - docker-compose -f docker-compose.yml -f docker-compose.prod.yml build
   post_build:
     commands:
       - docker push $IMAGE_URI_NODE:$IMAGE_TAG
