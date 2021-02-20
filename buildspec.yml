@@ -5,9 +5,9 @@ phases:
       - echo pre_build started on `date`
       - echo Logging in to Amazon ECR...
       - IMAGE_URI_NODE=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME_NODE
-      - IMAGE_TAG=`cat docker-compose.prod.yml |grep "image:" |awk -F':' '{print $3}'`
+      - IMAGE_TAG=`cat docker-compose.prod.yml |grep 'image:' |awk -F':' '{print $3}'`
       - echo $IMAGE_TAG
-      - sed -i "s/ECR_URI/$IMAGE_URI_NODE/g" docker-compose.prod.yml
+      - sed -i "s|ECR_URI|$IMAGE_URI_NODE|g" docker-compose.prod.yml
       - cat docker-compose.prod.yml
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
   build:
