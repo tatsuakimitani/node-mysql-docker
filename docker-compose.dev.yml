@@ -1,0 +1,37 @@
+version: '3'
+services:
+ mysql:
+   image: mysql:5.7
+   hostname: dev-mysql
+   env_file: ./mysql/mysql.env
+   environment:
+     - TZ=Asia/Tokyo
+   ports:
+     - '3306:3306'
+   volumes:
+     - ./mysql/conf:/etc/mysql/conf.d/:ro
+     - mysqldata:/var/lib/mysql
+   networks:
+     - default
+ app:
+   image: node-app:v1.0.0
+   container_name: dev_api
+   env_file: ./src/app.env
+   environment:
+     - TZ=Asia/Tokyo
+     - DEBUG=app:*
+   volumes: 
+     - ./src:/usr/src/app
+   tty: true
+   ports:
+     - '3000:3000'
+   command: npm run watch
+   networks:
+     - default
+   depends_on:
+     - mysql
+networks:
+ default:
+# コンテナが削除されてもデータが消えずに保持される
+volumes:
+ mysqldata:
