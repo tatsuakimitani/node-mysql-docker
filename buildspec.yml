@@ -1,4 +1,10 @@
 version: 0.2
+env:
+  parameter-store:
+    DB_USER: "/CodeBuild/DB_USER"
+    DB_PASSWARD: "/CodeBuild/DB_PASSWORD"
+    DB_HOST: "/CodeBuild/DB_HOST"
+    DB_SCHEMA: "/CodeBuild/DB_SCHEMA"
 phases:
   pre_build:
     commands:
@@ -9,6 +15,11 @@ phases:
       - echo $IMAGE_TAG
       - sed -i "s|ECR_URI|$IMAGE_URI_NODE|g" docker-compose.prod.yml
       - cat docker-compose.prod.yml
+      - sed -i "s|DB_USER|$DB_USER|g" src/production.env
+      - sed -i "s|DB_PASSWORD|$DB_PASSWORD|g" src/production.env
+      - sed -i "s|DB_HOST|$DB_HOST|g" src/production.env
+      - sed -i "s|DB_SCHEMA|$DB_SCHEMA|g" src/production.env
+      - mv src/production.env src/.env
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
   build:
     commands:
