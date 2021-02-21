@@ -5,14 +5,14 @@ files:
     destination: /opt/node-app
 hooks:
   ApplicationStop:
-    - location: bash scripts/stop_docker_container.sh
+    - location: scripts/stop_docker_container.sh
       timeout: 300
       runas: root
-  AfterInstall:
-    - location: bash scripts/update_docker_image.sh
+  BeforeInstall:
+    - location: scripts/update_docker_image.sh
       timeout: 300
       runas: root
   ApplicationStart:
-    - location: bash scripts/start_docker_container.sh
+    - location: scripts/start_docker_container.sh
       timeout: 300
       runas: root
