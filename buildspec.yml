@@ -29,7 +29,7 @@ phases:
       - docker push $IMAGE_URI_NODE:$IMAGE_TAG
       - echo '[{"name":"nnode","imageUri":"__URI_NODE__"}]' > imagedef.json
       - sed -ie "s@__URI_NODE__@${IMAGE_URI_NODE}:${IMAGE_TAG}@" imagedef.json
-      - sed -ie "|build:|d" docker-compose.yml
+      - sed -ie '/build:/d' docker-compose.yml
 artifacts:
   files:
     - imagedef.json
