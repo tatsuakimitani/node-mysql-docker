@@ -1,1 +1,2 @@
-docker-compose -f /opt/node-app/docker-compose.yml -f /opt/node-app/docker-compose.prod.yml down
+docker-compose -f /opt/node-app/docker-compose.yml -f /opt/node-app/docker-compose.prod.yml down --rmi all --volumes --remove-orphans
+
