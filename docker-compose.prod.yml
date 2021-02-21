@@ -1,7 +1,7 @@
 version: '3'
 services:
  app:
-   image: ECR_URI:v1.0.0
+   image: ECR_URI:v1.0.1
    environment:
      - TZ=Asia/Tokyo
    tty: true
