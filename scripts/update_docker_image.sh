@@ -1,2 +1,2 @@
 #!/bin/bash
-docker-compose -f /opt/node-app/docker-compose.yml -f /opt/node-app/docker-compose.prod.yml pull
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml pull
