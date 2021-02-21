@@ -1,4 +1,5 @@
 #!/bin/bash
-docker-compose -f /opt/node-app/docker-compose.yml -f /opt/node-app/docker-compose.prod.yml down --rmi all --volumes --remove-orphans
+cd `dirname $0`
+docker-compose -f ../docker-compose.yml -f ../docker-compose.prod.yml down --rmi all --volumes --remove-orphans
 #rm -rf /opt/node-app/*
 
